@@ -1,0 +1,29 @@
+
+
+.box1{
+    border-radius:10px;
+    background-color:#E5E7E9;
+    padding: 10px;
+    border: 1px solid darkgrey;
+    justify-content: center;
+    align-content: center;
+    margin-bottom:10px;
+    display:block;
+  }
+  
+  .box1 h2{
+    margin-bottom: 5px;
+  }
+  
+  textarea {
+    padding: 10px;
+    width:100%;
+  }
+  
+  .counter {
+    float:right;
+    color: black;
+    font-style: italic;
+  }
+  
+  
