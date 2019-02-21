@@ -1,3 +1,4 @@
+//stackoverflow
 function timeSince(date) {
     var seconds = Math.floor((new Date() - date) / 1000);
   
@@ -98,15 +99,16 @@ $(document).ready(function() {
 
     }
     else if (charCount > 140){
-      $(".error1").css("display", "block");
-      $(".error2").css("display", "none");
+      
+      $(".error2").html("tweet can only be 140 characters or less")
+      $(".error2").css("display", "block");
+
 
     }
   
    else {
      $.post( "/tweets", formData)
   .done(function() {
-    console.log("made post request");
     loadTweets();
     $(".error1").css("display", "none");
     $(".error2").css("display", "none");
