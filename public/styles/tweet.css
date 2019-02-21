@@ -52,8 +52,22 @@
   .body{
     margin:50px 0 ;
     padding:0px 20px;
-  
   }
+  
+  p {
+    word-wrap: break-word;
+  }
+  .error {
+    float: right;
+    display:none;
+      color:#fff;
+      font-family: Verdana,sans-serif;
+      padding:6px 20px;
+      display:none;
+      background-color:#f44336;
+      margin-left:20px;
+    }
+
   .tweet footer{
     border-top: 1px  solid #ededed;
     padding: 10px 10px;

@@ -1,5 +1,24 @@
 
 
+.error2 {
+  float: right;
+    color:#fff;
+    font-family: Verdana,sans-serif;
+    padding:6px 20px;
+    display:none;
+    background-color:#f44336;
+    margin-left:20px;
+  }
+  .error1 {
+    float: right;
+    display:none;
+      color:#fff;
+      font-family: Verdana,sans-serif;
+      padding:6px 20px;
+      display:none;
+      background-color:#f44336;
+      margin-left:20px;
+  }
 .box1{
     border-radius:10px;
     background-color:#E5E7E9;
@@ -8,9 +27,10 @@
     justify-content: center;
     align-content: center;
     margin-bottom:10px;
-    display:block;
+    display:none;
   }
   
+
   .box1 h2{
     margin-bottom: 5px;
   }
