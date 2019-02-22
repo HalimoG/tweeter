@@ -22,13 +22,11 @@ module.exports = function makeDataHelpers(db) {
       db.collection("tweets").find().toArray(callback);
     },
     updateTweets: function(id, count, callback) {
-      const incrementAmount = parseInt(count, 10)
-      console.log("increment: ", incrementAmount)
+      const incrementAmount = parseInt(count, 10);
       db.collection("tweets").updateOne(
         {_id: ObjectId(id)}, 
         {$inc: {likes: incrementAmount}}, 
         function (err, result) {
-          // console.log(err, result);
           callback(err, true);
         }
       );

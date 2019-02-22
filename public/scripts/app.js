@@ -1,4 +1,3 @@
-//stackoverflow
 function timeSince(date) {
     var seconds = Math.floor((new Date() - date) / 1000);
   
@@ -77,14 +76,15 @@ function loadTweets(){
 }
 
 $(document).ready(function() {
-  
+ 
+  //toggles ComposetweetBox
   $("button" ).click(function() {
     $(".box1").slideToggle( "slow", function() {
     });
     $("textarea").focus();  
     });  
  
-  
+  // like Button
   $(".tweet-container").on("click", ".fas.fa-heart", function(e) {
     
     var $icon = $(e.target);
@@ -111,35 +111,30 @@ $(document).ready(function() {
    });  
 
   loadTweets();
-  
+  // clears composeTweet box and makes count red if over 140 characters
   $(".add-tweet" ).submit(function (event) {
-  event.preventDefault();
-  let formData = $(this).serialize();
-  let charCount = $("textarea").val().length;
+    event.preventDefault();
+    let formData = $(this).serialize();
+    let charCount = $("textarea").val().length;
 
     if (charCount === 0){
-
       $(".error2").css("display", "block");
-
     }
-    else if (charCount > 140){
-      
+    else if (charCount > 140){ 
       $(".error2").html("tweet can only be 140 characters or less")
       $(".error2").css("display", "block");
-
-
     }
   
    else {
      $.post( "/tweets", formData)
-  .done(function() {
+     .done(function() {
     loadTweets();
     $(".error1").css("display", "none");
     $(".error2").css("display", "none");
     $(".counter").text(140);
     $("textarea").val("");
+    });
+    }
   });
-  }
-});
 
 });
