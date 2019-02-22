@@ -59,11 +59,11 @@ function createTweetElement (tweet){
       </p>
     </div>
     <footer>${timeSince(parseInt(tweet["created_at"]))}
-        <div class="icons">
-            <i class="fas fa-heart"></i>
-            <i class="fas fa-retweet"></i>
-            <i class="fas fa-flag"></i>
-          </div>
+    <div class="icons">
+          <i data-tweet-id=${tweet['_id']} data-tweet-liked="false" data-tweet-likes =${tweet['likes']} class="fas fa-heart"></i>
+          <i class="fas fa-retweet"></i>
+          <i class="fas fa-flag"></i>
+        </div>
     </footer>
   </article>`;
 }
@@ -72,23 +72,47 @@ function loadTweets(){
   $('.tweet-container').empty();
   $.getJSON( "/tweets", function( json ) {
     
-    console.log( "JSON Data: ", json);
     renderTweets(json);
    });
 }
 
-
 $(document).ready(function() {
-  $( "button" ).click(function() {
-    $(".box1").slideToggle( "slow", function() {
-      
-  });
-        $("textarea").focus();  
-    });  
   
-  loadTweets();
+  $("button" ).click(function() {
+    $(".box1").slideToggle( "slow", function() {
+    });
+    $("textarea").focus();  
+    });  
+ 
+  
+  $(".tweet-container").on("click", ".fas.fa-heart", function(e) {
+    
+    var $icon = $(e.target);
+    var id = $icon.data("tweet-id");
+    var like = $icon.data("tweet-likes");
+    var liked = $icon.data("tweet-liked");
 
-  $( "form" ).submit(function (event) {
+
+    $.ajax({
+      url: "/tweets/likes",
+      type: "POST",
+      data: { 
+        id: id,
+        count: (liked ? -1 : 1)
+      },
+      success: function() {
+        $icon.data("tweet-liked", !liked)
+        $icon.css({"color": $icon.data("tweet-liked") ? "red" : "#00a087"}); 
+      }, 
+      error: function() {
+          alert('Something went wrong');
+      }
+    });
+   });  
+
+  loadTweets();
+  
+  $(".add-tweet" ).submit(function (event) {
   event.preventDefault();
   let formData = $(this).serialize();
   let charCount = $("textarea").val().length;
@@ -112,9 +136,10 @@ $(document).ready(function() {
     loadTweets();
     $(".error1").css("display", "none");
     $(".error2").css("display", "none");
+    $(".counter").text(140);
+    $("textarea").val("");
   });
   }
 });
 
 });
-

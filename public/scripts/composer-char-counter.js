@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
     $('textarea').keyup(function(){
+        
         var numofletters = $(this).val().length;
         var max = 140;
         var characterCount= max - numofletters;
@@ -12,10 +13,8 @@ $(document).ready(function() {
             $(this).siblings( ".counter").text(characterCount);
             $(this).siblings( ".counter").css ({"color": "black"});
         }
-        
         else{
             $(this).siblings( ".counter").text(characterCount);
-
         }
     });
   });
