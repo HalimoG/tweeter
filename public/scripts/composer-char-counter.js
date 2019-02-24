@@ -9,12 +9,10 @@ $(document).ready(function() {
             $(this).siblings( ".counter").text(characterCount);
             $(this).siblings( ".counter").css ({"color": "red"});
         }    
-        else if(characterCount > 0){
+        else if(characterCount => 0){
             $(this).siblings( ".counter").text(characterCount);
             $(this).siblings( ".counter").css ({"color": "black"});
         }
-        else{
-            $(this).siblings( ".counter").text(characterCount);
-        }
+        
     });
   });
